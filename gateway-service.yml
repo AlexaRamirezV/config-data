@@ -5,33 +5,32 @@ server:
 spring:
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true # Permite encontrar servicios automáticamente
-      routes:
-        # Ruta para AUTH
-        - id: auth
-          uri: lb://auth # lb = Load Balancer (usa el nombre en Eureka)
-          predicates:
-            - Path=/auth/** # Si la URL empieza con /auth...
-          filters:
-            - StripPrefix=1 # Quita "/auth" y manda el resto
+      server:
+        webmvc:
+          routes:
+            # Ruta para AUTH
+            - id: auth
+              uri: lb://auth # lb = Load Balancer (usa el nombre en Eureka)
+              predicates:
+                - Path=/auth/** # Si la URL empieza con /auth...
+              filters:
+                - StripPrefix=1 # Quita "/auth" y manda el resto
 
-        # Ruta para PRODUCT
-        - id: PRODUCT
-          uri: lb://product
-          predicates:
-            - Path=/product/**
-          filters:
-            - StripPrefix=1
+            # Ruta para PRODUCT
+            - id: product
+              uri: lb://product
+              predicates:
+                - Path=/product/**
+              filters:
+                - StripPrefix=1
 
-        # Ruta para INVOICE
-        - id: invoice
-          uri: lb://invoice
-          predicates:
-            - Path=/invoice/**
-          filters:
-            - StripPrefix=1
+            # Ruta para INVOICE
+            - id: invoice
+              uri: lb://invoice
+              predicates:
+                - Path=/invoice/**
+              filters:
+                - StripPrefix=1
 
 eureka:
   client:
