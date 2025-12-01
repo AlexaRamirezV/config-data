@@ -1,6 +1,6 @@
 server:
  port: 9090
- 
+
 spring:
  application:
    name: admin-server
@@ -17,3 +17,13 @@ eureka:
    fetch-registry: true
  instance:
    prefer-ip-address: true
+
+# Admin-service
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,loggers,threaddump,heapdump
+  endpoint:
+    health:
+      show-details: always
