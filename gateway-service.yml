@@ -11,34 +11,34 @@ spring:
           lower-case-service-id: true
       routes:
         # Ruta para AUTH
-        - id: auth
-          uri: lb://auth 
+        - id: auth-service
+          uri: lb://auth-service 
           predicates:
-            - Path=/auth/**
+            - Path=/auth-service/**
           filters:
             - StripPrefix=1
 
         # Ruta para PRODUCT
-        - id: product
-          uri: lb://product
+        - id: product-service
+          uri: lb://product-service
           predicates:
-            - Path=/product/**
+            - Path=/product-service/**
           filters:
             - StripPrefix=1
 
         # Ruta para INVOICE (y cart)
         - id: invoice
-          uri: lb://invoice
+          uri: lb://invoice-service
           predicates:
-            - Path=/invoice/**
+            - Path=/invoice-service/**
           filters:
             - StripPrefix=1
         
         # Ruta para CUSTOMER
-        - id: customer
-          uri: lb://customer
+        - id: customer-service
+          uri: lb://customer-service
           predicates:
-            - Path=/customer/**
+            - Path=/customer-service/**
           filters:
             - StripPrefix=1
 

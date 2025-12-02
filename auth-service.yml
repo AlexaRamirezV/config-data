@@ -6,7 +6,7 @@ system:
 
 spring:
   application:
-    name: auth
+    name: auth-service
   datasource:
     url: jdbc:mysql://localhost:3306/db_auth
     password: Alexa1401* 
@@ -15,6 +15,7 @@ spring:
     open-in-view: false
     show-sql: true
     hibernate:
+      # update: Crea las tablas si no existen, o las actualiza si cambia algo
       ddl-auto: update
     properties:
       hibernate:
