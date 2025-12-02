@@ -26,11 +26,19 @@ spring:
           filters:
             - StripPrefix=1
 
-        # Ruta para INVOICE
+        # Ruta para INVOICE (y cart)
         - id: invoice
           uri: lb://invoice
           predicates:
             - Path=/invoice/**
+          filters:
+            - StripPrefix=1
+        
+        # Ruta para CUSTOMER
+        - id: customer
+          uri: lb://customer
+          predicates:
+            - Path=/customer/**
           filters:
             - StripPrefix=1
 
